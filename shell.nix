@@ -11,9 +11,15 @@ let
   pkgs = import <nixpkgs> { overlays = [ (import "${nixpkgs-esp-dev}/overlay.nix") ]; };
 in
 pkgs.mkShell {
-  name = "esp-project";
+  name = "palladium";
 
   buildInputs = with pkgs; [
     esp-idf-full
+    platformio
   ];
+
+  shellHook = ''
+export PLATFORMIO_CORE_DIR=$PWD/.platformio
+'';
+
 }
